@@ -129,6 +129,7 @@
   --bg-card-hover: #12151a;
   --bg-sidebar: #000000;
   --bg-overlay: rgba(0, 0, 0, 0.9);
+  --bg-login: #0A1929; /* Deeper navy blue for login */
 
   --text: #ffffff;
   --text-muted: #94a3b8;
@@ -1850,4 +1851,91 @@ tbody tr:last-child td {
 
 .page-enter {
   animation: pageFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Mobile Menu Button ───────────────────────────────── */
+#mobile-menu-btn {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  #mobile-menu-btn {
+    display: flex !important;
+  }
+}
+
+/* ── Login Page Responsiveness ─────────────────────────── */
+.login-page {
+  background: var(--bg-login, #0A1929) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 16px !important;
+}
+
+@media (max-width: 768px) {
+  .login-card {
+    flex-direction: column !important;
+    border-radius: 32px !important;
+    max-width: 480px !important;
+  }
+  
+  .login-card > div {
+    padding: 40px 32px !important;
+  }
+
+  .login-card > div:last-child {
+    display: none; /* Hide image on mobile to focus on login */
+  }
+}
+
+/* ── Responsiveness ─────────────────────────────────────── */
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-w: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    box-shadow: 20px 0 50px rgba(0,0,0,0.5);
+    z-index: 100;
+    width: 280px;
+    min-width: 280px;
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+  }
+
+  .topbar {
+    padding: 0 16px;
+  }
+
+  .page-content {
+    padding: 20px 16px;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-right {
+    gap: 8px;
+  }
+  
+  .user-info {
+    display: none !important;
+  }
 }

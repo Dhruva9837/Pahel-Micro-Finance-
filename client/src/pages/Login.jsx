@@ -28,24 +28,25 @@ export default function Login() {
   };
 
   return (
-    <div style={{
+    <div className="login-page" style={{
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      background: 'var(--primary)',
+      background: 'var(--bg-login, #0A1929)',
       fontFamily: "'Inter', sans-serif",
       padding: '24px'
     }}>
-      <div style={{
+      <div className="login-card" style={{
         maxWidth: 1040,
         width: '100%',
         background: 'white',
         borderRadius: 56, // Very large rounded corners for the main card
         display: 'flex',
+        flexDirection: window.innerWidth <= 768 ? 'column' : 'row',
         overflow: 'hidden',
         boxShadow: '0 40px 100px -20px rgba(0, 0, 0, 0.4)',
-        minHeight: 680
+        minHeight: window.innerWidth <= 768 ? 'auto' : 680
       }}>
         {/* Left Panel - Form */}
         <div style={{

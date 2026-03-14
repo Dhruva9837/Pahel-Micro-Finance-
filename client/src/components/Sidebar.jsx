@@ -23,7 +23,7 @@ const navItems = [
   { label: 'Audit Logs', to: '/audit', icon: Shield, roles: ['admin'] },
 ];
 
-export default function Sidebar({ collapsed, setCollapsed }) {
+export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobileOpen }) {
   const { user, logout, isAdmin } = useAuth();
   const { dark, toggle } = useTheme();
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
   };
 
   return (
-    <aside className={`sidebar${collapsed ? ' collapsed' : ''}`}>
+    <aside className={`sidebar${collapsed ? ' collapsed' : ''}${mobileOpen ? ' mobile-open' : ''}`}>
       {/* ── Logo ── */}
       <div style={{
         padding: collapsed ? '18px 0' : '20px 20px',
@@ -165,8 +165,13 @@ export default function Sidebar({ collapsed, setCollapsed }) {
           <button
             onClick={() => setCollapsed(false)}
             className="nav-item"
-            title="Expand"
-            style={{ justifyContent: 'center', marginTop: 4 }}
+            title="Expand Sidebar"
+            style={{ 
+              justifyContent: 'center', 
+              marginTop: 4,
+              background: 'rgba(255,255,255,0.08)',
+              color: 'white'
+            }}
           >
             <ChevronRight size={17} />
           </button>
