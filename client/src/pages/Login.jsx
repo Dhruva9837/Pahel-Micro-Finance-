@@ -114,7 +114,8 @@ export default function Login() {
                       fontSize: 14,
                       outline: 'none',
                       transition: 'all 0.2s',
-                      fontWeight: 500
+                      fontWeight: 500,
+                      color: '#0f172a'
                     }}
                     onFocus={e => { e.target.style.borderColor = '#1a8ffb'; e.target.style.background = 'white'; e.target.style.boxShadow = '0 0 0 4px rgba(26, 143, 251, 0.1)'; }}
                     onBlur={e => { e.target.style.borderColor = '#e2e8f0'; e.target.style.background = '#f8fafc'; e.target.style.boxShadow = 'none'; }}
@@ -142,7 +143,8 @@ export default function Login() {
                       fontSize: 14,
                       outline: 'none',
                       transition: 'all 0.2s',
-                      fontWeight: 500
+                      fontWeight: 500,
+                      color: '#0f172a'
                     }}
                     onFocus={e => { e.target.style.borderColor = '#1a8ffb'; e.target.style.background = 'white'; e.target.style.boxShadow = '0 0 0 4px rgba(26, 143, 251, 0.1)'; }}
                     onBlur={e => { e.target.style.borderColor = '#e2e8f0'; e.target.style.background = '#f8fafc'; e.target.style.boxShadow = 'none'; }}
