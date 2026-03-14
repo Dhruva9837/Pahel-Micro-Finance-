@@ -26,7 +26,7 @@ const logger = winston.createLogger({
   ),
   defaultMeta: { service: 'pahel-lms' },
   transports: [
-    transport,
+    ...(process.env.NODE_ENV !== 'production' ? [transport] : []),
     new winston.transports.Console({
       format: winston.format.combine(
         winston.format.colorize(),
