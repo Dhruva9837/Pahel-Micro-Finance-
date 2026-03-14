@@ -14,7 +14,7 @@ import {
 import { SkeletonCard, SkeletonTable } from '../components/Skeleton';
 import StatusBadge from '../components/StatusBadge';
 
-const PIE_COLORS = ['#253745', '#4A5C6A', '#9BA8AB', '#CCD0CF'];
+const PIE_COLORS = ['var(--primary)', 'var(--secondary)', 'var(--text-subtle)', 'var(--muted-foreground)'];
 
 const KPICard = ({ label, value, icon: Icon, color, trend, trendLabel, sub }) => (
   <div className="kpi-card" style={{ '--kpi-color': color }}>
@@ -128,14 +128,14 @@ export default function Dashboard() {
           Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)
         ) : (
           <>
-            <KPICard label="Total Clients" value={data.totalClients?.toLocaleString('en-IN')} icon={Users} color="#253745" sub="Registered borrowers" />
-            <KPICard label="Total Disbursed" value={formatCurrency(data.totalDisbursed)} icon={Wallet} color="#253745" sub="Across all loans" />
-            <KPICard label="Outstanding Balance" value={formatCurrency(data.outstandingBalance)} icon={TrendingUp} color="#4A5C6A" sub="Pending recovery" />
-            <KPICard label="Today's Collection" value={formatCurrency(data.todayCollection)} icon={DollarSign} color="#253745" sub="Collected today" />
-            <KPICard label="Month Collection" value={formatCurrency(data.monthCollection)} icon={Activity} color="#253745" sub="This month" />
-            <KPICard label="Active Loans" value={data.activeLoans} icon={CreditCard} color="#253745" sub="Running loans" />
-            <KPICard label="Overdue Loans" value={data.overdueLoans} icon={AlertTriangle} color="#ef4444" sub="Require attention" />
-            <KPICard label="Closed Loans" value={data.closedLoans} icon={CheckCircle} color="#253745" sub="Fully repaid" />
+            <KPICard label="Total Clients" value={data.totalClients?.toLocaleString('en-IN')} icon={Users} color="var(--primary)" sub="Registered borrowers" />
+            <KPICard label="Total Disbursed" value={formatCurrency(data.totalDisbursed)} icon={Wallet} color="var(--primary)" sub="Across all loans" />
+            <KPICard label="Outstanding Balance" value={formatCurrency(data.outstandingBalance)} icon={TrendingUp} color="var(--secondary)" sub="Pending recovery" />
+            <KPICard label="Today's Collection" value={formatCurrency(data.todayCollection)} icon={DollarSign} color="var(--primary)" sub="Collected today" />
+            <KPICard label="Month Collection" value={formatCurrency(data.monthCollection)} icon={Activity} color="var(--primary)" sub="This month" />
+            <KPICard label="Active Loans" value={data.activeLoans} icon={CreditCard} color="var(--primary)" sub="Running loans" />
+            <KPICard label="Overdue Loans" value={data.overdueLoans} icon={AlertTriangle} color="var(--danger)" sub="Require attention" />
+            <KPICard label="Closed Loans" value={data.closedLoans} icon={CheckCircle} color="var(--primary)" sub="Fully repaid" />
           </>
         )}
       </div>
@@ -167,8 +167,8 @@ export default function Dashboard() {
                 <AreaChart data={trendData} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
                   <defs>
                     <linearGradient id="colorAmt" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#253745" stopOpacity={0.15} />
-                      <stop offset="95%" stopColor="#253745" stopOpacity={0} />
+                      <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.15} />
+                      <stop offset="95%" stopColor="var(--primary)" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
@@ -178,11 +178,11 @@ export default function Dashboard() {
                   <Area
                     type="monotone"
                     dataKey="amount"
-                    stroke="#253745"
+                    stroke="var(--primary)"
                     strokeWidth={2.5}
                     fill="url(#colorAmt)"
-                    dot={{ fill: '#253745', strokeWidth: 0, r: 4 }}
-                    activeDot={{ r: 6, fill: '#253745', stroke: 'white', strokeWidth: 2 }}
+                    dot={{ fill: 'var(--primary)', strokeWidth: 0, r: 4 }}
+                    activeDot={{ r: 6, fill: 'var(--primary)', stroke: 'white', strokeWidth: 2 }}
                   />
                 </AreaChart>
               </ResponsiveContainer>

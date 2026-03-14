@@ -6,9 +6,9 @@ import toast from 'react-hot-toast';
 import { SkeletonTable } from '../components/Skeleton';
 
 const ROLE_COLORS = {
-  admin: { bg: 'rgba(99,102,241,0.1)', text: '#6366f1' },
-  staff: { bg: 'rgba(16,185,129,0.1)', text: '#10b981' },
-  viewer: { bg: 'rgba(245,158,11,0.1)', text: '#f59e0b' },
+  admin: { bg: 'rgba(37, 55, 69, 0.1)', text: 'var(--primary)' },
+  staff: { bg: 'rgba(16, 185, 129, 0.1)', text: '#10b981' },
+  viewer: { bg: 'rgba(245, 158, 11, 0.1)', text: '#f59e0b' },
 };
 
 const RoleBadge = ({ role }) => {
@@ -71,7 +71,7 @@ export default function AdminUsers() {
       {showForm && (
         <div className="card card-body" style={{ marginBottom: 20, borderTop: `3px solid var(--primary)` }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
-            <div style={{ width: 34, height: 34, borderRadius: 9, background: 'rgba(99,102,241,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: 34, height: 34, borderRadius: 9, background: 'rgba(37, 55, 69, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Shield size={16} color="var(--primary)" />
             </div>
             <h3 style={{ fontWeight: 700, fontSize: 15 }}>Create New User</h3>
