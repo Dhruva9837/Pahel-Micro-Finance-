@@ -14,7 +14,7 @@ import {
 import { SkeletonCard, SkeletonTable } from '../components/Skeleton';
 import StatusBadge from '../components/StatusBadge';
 
-const PIE_COLORS = ['var(--primary)', 'var(--secondary)', 'var(--text-subtle)', 'var(--muted-foreground)'];
+const PIE_COLORS = ['#1a8ffb', '#00f2fe', '#94a3b8', '#475569'];
 
 const KPICard = ({ label, value, icon: Icon, color, trend, trendLabel, sub }) => (
   <div className="kpi-card" style={{ '--kpi-color': color }}>
@@ -299,7 +299,7 @@ export default function Dashboard() {
         </div>
 
         {/* Today's Kist Shortcut */}
-        <div className="card" style={{ background: 'linear-gradient(135deg, #253745 0%, #11212D 100%)', border: 'none' }}>
+        <div className="card" style={{ background: 'linear-gradient(135deg, var(--primary) 0%, #11212D 100%)', border: 'none' }}>
           <div className="card-body" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 10 }}>
             <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.8px' }}>Today's Collection</div>
             <div style={{ fontSize: 28, fontWeight: 900, color: 'white', letterSpacing: '-1px', lineHeight: 1.1 }}>

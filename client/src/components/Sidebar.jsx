@@ -49,12 +49,12 @@ export default function Sidebar({ collapsed, setCollapsed }) {
             <div style={{
               width: 36,
               height: 36,
-              background: '#253745',
+              background: 'var(--primary)',
               borderRadius: 10,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 4px 12px rgba(37, 55, 69, 0.3)',
+              boxShadow: '0 4px 12px rgba(26, 143, 251, 0.3)',
               flexShrink: 0,
             }}>
               <Wallet size={18} color="white" />
@@ -68,10 +68,10 @@ export default function Sidebar({ collapsed, setCollapsed }) {
         {collapsed && (
           <div style={{
             width: 36, height: 36,
-            background: '#253745',
+            background: 'var(--primary)',
             borderRadius: 10,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 4px 12px rgba(37, 55, 69, 0.3)',
+            boxShadow: '0 4px 12px rgba(26, 143, 251, 0.3)',
           }}>
             <Wallet size={18} color="white" />
           </div>
