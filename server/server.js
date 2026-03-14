@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
@@ -15,9 +14,13 @@ const { detectOverdue } = require('./services/overdueService');
 const logger = require('./utils/logger');
 const { connectRedis } = require('./services/redisService');
 
-// Initialize BullMQ worker (skip on Vercel - serverless has no persistent process)
+// Only initialize BullMQ worker outside serverless environments
 if (!process.env.VERCEL) {
-  require('./workers/reportWorker');
+  try {
+    require('./workers/reportWorker');
+  } catch (e) {
+    console.warn('[Worker] BullMQ Worker failed to load (Redis likely unavailable):', e.message);
+  }
 }
 
 // Route imports
@@ -41,7 +44,7 @@ app.use(cors({
   credentials: true,
 }));
 
-// HTTP Logging with Winston
+// HTTP Logging
 app.use((req, res, next) => {
   logger.info(`${req.method} ${req.url}`);
   next();
@@ -60,10 +63,10 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Static files
+// Static files for uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// On Vercel: ensure DB/Redis are connected before handling requests (no startServer)
+// On Vercel: ensure DB/Redis are connected before handling requests
 if (process.env.VERCEL) {
   const vercelDbReady = connectDB();
   connectRedis();
@@ -72,6 +75,11 @@ if (process.env.VERCEL) {
     next();
   });
 }
+
+// Health check (before route imports to be always available)
+app.get('/api/health', (req, res) => {
+  res.json({ success: true, message: 'Pahel LMS API is running', timestamp: new Date().toISOString() });
+});
 
 // API Routes
 app.use('/api/auth', authRoutes);
@@ -85,13 +93,7 @@ app.use('/api/audit', auditRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/groups', groupRoutes);
 
-// Health check
-app.get('/api/health', (req, res) => {
-  res.json({ success: true, message: 'Pahel LMS API is running', timestamp: new Date().toISOString() });
-});
-
 // Backend API only - Frontend is deployed separately on Vercel
-// No static serving needed here for separate deployment
 
 // 404 Handler
 app.use((req, res) => {
@@ -106,15 +108,22 @@ const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
   try {
+    console.log('[Startup] Connecting to MongoDB...');
     await connectDB();
+    console.log('[Startup] MongoDB connected.');
+
+    console.log('[Startup] Connecting to Redis...');
     connectRedis(); // Don't await, let it connect in background
+    console.log('[Startup] Redis connection initiated.');
 
     // Seed initial data
+    console.log('[Startup] Running seeder...');
     await seed();
+    console.log('[Startup] Seeder complete.');
 
     app.listen(PORT, () => {
-      logger.info(`🚀 Pahel LMS Server running on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode`);
-      logger.info(`📊 API: ${process.env.BACKEND_URL || `http://localhost:${PORT}`}/api/health`);
+      logger.info(`Pahel LMS Server running on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode`);
+      logger.info(`API: ${process.env.BACKEND_URL || `http://localhost:${PORT}`}/api/health`);
     });
 
     // Cron: detect overdue EMIs daily at midnight
@@ -122,22 +131,24 @@ const startServer = async () => {
       logger.info('[CRON] Running overdue detection...');
       await detectOverdue();
     });
+
     process.on('unhandledRejection', (reason) => {
       if (reason && (reason.code === 'ECONNREFUSED' || reason.message?.includes('ECONNREFUSED'))) {
-        return; // Silently ignore Redis/Net connection rejections
+        return;
       }
       logger.error('Unhandled Rejection', reason);
     });
 
     process.on('uncaughtException', (err) => {
       if (err && (err.code === 'ECONNREFUSED' || err.message?.includes('ECONNREFUSED'))) {
-        return; // Silently ignore Redis/Net connection exceptions
+        return;
       }
       logger.error('Uncaught Exception', err);
       process.exit(1);
     });
   } catch (err) {
-    logger.error('Failed to start server', err);
+    console.error('[FATAL] Failed to start server:', err.message);
+    console.error(err.stack);
     process.exit(1);
   }
 };
