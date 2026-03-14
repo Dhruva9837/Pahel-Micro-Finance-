@@ -129,7 +129,7 @@
   --bg-card-hover: #12151a;
   --bg-sidebar: #000000;
   --bg-overlay: rgba(0, 0, 0, 0.9);
-  --bg-login: #0A1929; /* Deeper navy blue for login */
+  --bg-login: var(--primary); /* Reverted to vibrant blue */
 
   --text: #ffffff;
   --text-muted: #94a3b8;
@@ -1866,7 +1866,7 @@ tbody tr:last-child td {
 
 /* ── Login Page Responsiveness ─────────────────────────── */
 .login-page {
-  background: var(--bg-login, #0A1929) !important;
+  background: var(--primary) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;

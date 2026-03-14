@@ -33,7 +33,7 @@ export default function Login() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      background: 'var(--bg-login, #0A1929)',
+      background: 'var(--primary)',
       fontFamily: "'Inter', sans-serif",
       padding: '24px'
     }}>
