@@ -5,48 +5,48 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
+    --background: 210 20% 98%;
     --foreground: 222 47% 11%;
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
-    --primary: 161 72% 43%;
+    --primary: 206 30% 21%; /* #253745 */
     --primary-foreground: 210 40% 98%;
-    --secondary: 161 72% 96%;
-    --secondary-foreground: 161 72% 20%;
-    --muted: 210 40% 96%;
+    --secondary: 206 18% 35%; /* #4A5C6A */
+    --secondary-foreground: 210 40% 98%;
+    --muted: 210 20% 96%;
     --muted-foreground: 215 16% 47%;
-    --accent: 199 89% 48%;
+    --accent: 206 18% 35%; 
     --accent-foreground: 210 40% 98%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 161 72% 43%;
+    --ring: 206 30% 21%;
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 161 72% 43%;
-    --primary-foreground: 222 47% 11%;
-    --secondary: 217 33% 18%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 18%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 199 89% 48%;
-    --accent-foreground: 210 40% 98%;
+    --background: 200 64% 7%; /* #06141B */
+    --foreground: 210 20% 98%;
+    --card: 205 44% 12%; /* #11212D */
+    --card-foreground: 210 20% 98%;
+    --popover: 205 44% 12%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 206 30% 21%; /* #253745 */
+    --primary-foreground: 210 20% 98%;
+    --secondary: 206 18% 35%; /* #4A5C6A */
+    --secondary-foreground: 210 20% 98%;
+    --muted: 206 18% 25%;
+    --muted-foreground: 206 10% 65%;
+    --accent: 206 18% 35%;
+    --accent-foreground: 210 20% 98%;
     --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 18%;
-    --input: 217 33% 18%;
-    --ring: 161 72% 43%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 206 18% 25%;
+    --input: 206 18% 25%;
+    --ring: 206 30% 21%;
   }
 }
 
@@ -66,9 +66,9 @@
   --bg: hsl(var(--background));
   --bg-card: hsl(var(--card));
   --bg-card-hover: #f8fafc;
-  --bg-sidebar: #020617;
+  --bg-sidebar: #06141B; /* Darkest */
   --bg-sidebar-item: rgba(255, 255, 255, 0.03);
-  --bg-overlay: rgba(15, 23, 42, 0.4);
+  --bg-overlay: rgba(6, 20, 27, 0.4);
 
   /* Text */
   --text: #1e293b;
@@ -76,14 +76,14 @@
   --text-subtle: #94a3b8;
   --sidebar-text: #94a3b8;
   --sidebar-active: #ffffff;
-  --sidebar-active-bg: #10b981;
+  --sidebar-active-bg: #253745;
 
   /* Brand Palette */
-  --primary: #10b981;
-  --primary-dark: #059669;
-  --primary-light: #34d399;
-  --accent: #0ea5e9;
-  --accent-dark: #0284c7;
+  --primary: #253745;
+  --primary-dark: #11212D;
+  --primary-light: #4A5C6A;
+  --accent: #4A5C6A;
+  --accent-dark: #253745;
 
   /* Semantic */
   --success: #10b981;
@@ -97,7 +97,7 @@
 
   /* Borders & Shadows */
   --border: #e2e8f0;
-  --border-focus: #10b981;
+  --border-focus: #253745;
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -124,19 +124,19 @@
 
 /* ── Dark Mode ─────────────────────────────────────────── */
 .dark {
-  --bg: #030712;
-  --bg-card: rgba(17, 24, 39, 0.7);
-  --bg-card-hover: rgba(31, 41, 55, 0.8);
-  --bg-sidebar: #030712;
+  --bg: #06141B;
+  --bg-card: #11212D;
+  --bg-card-hover: #1b2d3d;
+  --bg-sidebar: #06141B;
   --bg-overlay: rgba(0, 0, 0, 0.8);
 
-  --text: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-subtle: #64748b;
-  --sidebar-text: #64748b;
+  --text: #CCD0CF;
+  --text-muted: #9BA8AB;
+  --text-subtle: #4A5C6A;
+  --sidebar-text: #9BA8AB;
 
-  --border: rgba(255, 255, 255, 0.06);
-  --glass-bg: rgba(17, 24, 39, 0.75);
+  --border: rgba(204, 208, 207, 0.08);
+  --glass-bg: rgba(17, 33, 45, 0.75);
   --glass-border: rgba(255, 255, 255, 0.08);
 
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.5);

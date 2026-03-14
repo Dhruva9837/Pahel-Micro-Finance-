@@ -14,7 +14,7 @@ import {
 import { SkeletonCard, SkeletonTable } from '../components/Skeleton';
 import StatusBadge from '../components/StatusBadge';
 
-const PIE_COLORS = ['#10b981', '#0ea5e9', '#f59e0b', '#ef4444'];
+const PIE_COLORS = ['#253745', '#4A5C6A', '#9BA8AB', '#CCD0CF'];
 
 const KPICard = ({ label, value, icon: Icon, color, trend, trendLabel, sub }) => (
   <div className="kpi-card" style={{ '--kpi-color': color }}>
@@ -128,14 +128,14 @@ export default function Dashboard() {
           Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)
         ) : (
           <>
-            <KPICard label="Total Clients" value={data.totalClients?.toLocaleString('en-IN')} icon={Users} color="#10b981" sub="Registered borrowers" />
-            <KPICard label="Total Disbursed" value={formatCurrency(data.totalDisbursed)} icon={Wallet} color="#10b981" sub="Across all loans" />
-            <KPICard label="Outstanding Balance" value={formatCurrency(data.outstandingBalance)} icon={TrendingUp} color="#f59e0b" sub="Pending recovery" />
-            <KPICard label="Today's Collection" value={formatCurrency(data.todayCollection)} icon={DollarSign} color="#0ea5e9" sub="Collected today" />
-            <KPICard label="Month Collection" value={formatCurrency(data.monthCollection)} icon={Activity} color="#8b5cf6" sub="This month" />
-            <KPICard label="Active Loans" value={data.activeLoans} icon={CreditCard} color="#10b981" sub="Running loans" />
+            <KPICard label="Total Clients" value={data.totalClients?.toLocaleString('en-IN')} icon={Users} color="#253745" sub="Registered borrowers" />
+            <KPICard label="Total Disbursed" value={formatCurrency(data.totalDisbursed)} icon={Wallet} color="#253745" sub="Across all loans" />
+            <KPICard label="Outstanding Balance" value={formatCurrency(data.outstandingBalance)} icon={TrendingUp} color="#4A5C6A" sub="Pending recovery" />
+            <KPICard label="Today's Collection" value={formatCurrency(data.todayCollection)} icon={DollarSign} color="#253745" sub="Collected today" />
+            <KPICard label="Month Collection" value={formatCurrency(data.monthCollection)} icon={Activity} color="#253745" sub="This month" />
+            <KPICard label="Active Loans" value={data.activeLoans} icon={CreditCard} color="#253745" sub="Running loans" />
             <KPICard label="Overdue Loans" value={data.overdueLoans} icon={AlertTriangle} color="#ef4444" sub="Require attention" />
-            <KPICard label="Closed Loans" value={data.closedLoans} icon={CheckCircle} color="#10b981" sub="Fully repaid" />
+            <KPICard label="Closed Loans" value={data.closedLoans} icon={CheckCircle} color="#253745" sub="Fully repaid" />
           </>
         )}
       </div>
@@ -167,8 +167,8 @@ export default function Dashboard() {
                 <AreaChart data={trendData} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
                   <defs>
                     <linearGradient id="colorAmt" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.15} />
-                      <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#253745" stopOpacity={0.15} />
+                      <stop offset="95%" stopColor="#253745" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
@@ -178,11 +178,11 @@ export default function Dashboard() {
                   <Area
                     type="monotone"
                     dataKey="amount"
-                    stroke="#10b981"
+                    stroke="#253745"
                     strokeWidth={2.5}
                     fill="url(#colorAmt)"
-                    dot={{ fill: '#10b981', strokeWidth: 0, r: 4 }}
-                    activeDot={{ r: 6, fill: '#10b981', stroke: 'white', strokeWidth: 2 }}
+                    dot={{ fill: '#253745', strokeWidth: 0, r: 4 }}
+                    activeDot={{ r: 6, fill: '#253745', stroke: 'white', strokeWidth: 2 }}
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -253,7 +253,7 @@ export default function Dashboard() {
             ) : (
               <div>
                 {[
-                  { label: 'Recovery Rate', pct: data?.closedLoans && data?.activeLoans ? Math.round((data.closedLoans / (data.closedLoans + data.activeLoans)) * 100) : 0, color: '#10b981' },
+                  { label: 'Recovery Rate', pct: data?.closedLoans && data?.activeLoans ? Math.round((data.closedLoans / (data.closedLoans + data.activeLoans)) * 100) : 0, color: '#253745' },
                   { label: 'Overdue Rate', pct: data?.overdueLoans && data?.activeLoans ? Math.round((data.overdueLoans / data.activeLoans) * 100) : 0, color: '#ef4444' },
                 ].map((s) => (
                   <div key={s.label} style={{ marginBottom: 16 }}>
@@ -299,7 +299,7 @@ export default function Dashboard() {
         </div>
 
         {/* Today's Kist Shortcut */}
-        <div className="card" style={{ background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)', border: 'none' }}>
+        <div className="card" style={{ background: 'linear-gradient(135deg, #253745 0%, #11212D 100%)', border: 'none' }}>
           <div className="card-body" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 10 }}>
             <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.8px' }}>Today's Collection</div>
             <div style={{ fontSize: 28, fontWeight: 900, color: 'white', letterSpacing: '-1px', lineHeight: 1.1 }}>
