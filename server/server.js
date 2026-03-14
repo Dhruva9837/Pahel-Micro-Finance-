@@ -90,14 +90,8 @@ app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'Pahel LMS API is running', timestamp: new Date().toISOString() });
 });
 
-// Serve frontend in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/dist')));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-  });
-}
+// Backend API only - Frontend is deployed separately on Vercel
+// No static serving needed here for separate deployment
 
 // 404 Handler
 app.use((req, res) => {
